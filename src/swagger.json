@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Instafreight",
+    "description": "Instafreight demo API",
+    "contact": {
+      "email": "ivan.todorovic17@gmail.com"
+    },
+    "version": "0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/api"
+    }
+  ],
+  "paths": {
+    "/shipments": {
+      "get": {
+        "tags": [
+          "shipments"
+        ],
+        "summary": "Finds Shipments",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "findPetsByStatus",
+        "parameters": [
+          {
+            "name": "company",
+            "in": "query",
+            "description": "Company name will be searched for in email or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "carrier",
+            "in": "query",
+            "description": "Carrier name will be searched for in email or name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address[postcode]",
+            "in": "query",
+            "description": "Start stop will be filtered by postcode provided",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address[city]",
+            "in": "query",
+            "description": "Start stop will be filtered by city provided",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Shipment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Stop": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "postcode": {
+            "type": "integer"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Carrier": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Shipment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "distance": {
+            "type": "integer"
+          },
+          "time": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "company": {
+            "$ref": "#/components/schemas/Company"
+          },
+          "carrier": {
+            "$ref": "#/components/schemas/Carrier"
+          },
+          "stops": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            }
+          }
+        }
+      }
+    }
+  }
+}
