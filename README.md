@@ -25,8 +25,7 @@ Position yourself into `src` directory and build containers/boot up your environ
 
 * `docker-compose --env-file ./src/.env up`
 
-For the firsst time set-up you have to run migrations and seeding files by executing following commands (DB seed might take 1-2 min):
-
+For the first time set-up you have to run migrations and seed files by executing following commands (DB seed might take 1-2 min):
 * `docker exec -it api php artisan migrate`
 * `docker exec -it api php artisan db:seed`
 
@@ -54,4 +53,4 @@ ivan.todorovic17@gmail.com
 ## Version History
 
 * 0.1
-    * Initial Release
+  * Initial Release

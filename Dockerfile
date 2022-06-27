@@ -10,4 +10,5 @@ RUN apk add --no-cache $PHPIZE_DEPS \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
-RUN composer install
+COPY ./src /var/www/html/
+RUN cd /var/www/html && composer install --no-interaction --no-progress --optimize-autoloader
