@@ -21,9 +21,8 @@ Position yourself into `src` directory and build containers/boot up your environ
 * `cd src`
 * `docker-compose up -d`
 
-For the first time set-up you have to run migrations and seed files by executing following commands (DB seed might take 1-2 min):
-* `docker exec -it api php artisan migrate`
-* `docker exec -it api php artisan db:seed`
+For the first time set-up you have to run migrations and seed files by executing following command (might take 1-2 min):
+* `docker exec -it api php artisan migrate --seed`
 
 To test that everything is working properly you should be able to go to: `localhost:8000` or make a test request for API to `localhost:8000/api/shipments`.
 
@@ -33,6 +32,13 @@ For starting up your environment use:
 
 Tearing down the environment:
 * `docker-compose down`
+
+## Stack information:
+* `NGINX 1.22.0`
+* `PHP 8.1`
+* `PostgreSQL 14.4`
+* `Lumen 9 (Laravel 9)`
+* `Travis CI`
 
 ## Author
 
