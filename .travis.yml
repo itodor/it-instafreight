@@ -5,7 +5,7 @@ services:
 
 before_script:
     - cd src
-    - docker-compose up -d
+    - docker-compose up -d -e APP_ENV=${APP_ENV} -e APP_DEBUG=${APP_DEBUG} -e DB_CONNECTION=${DB_CONNECTION} -e DB_HOST=${DB_HOST} -e DB_PORT=${DB_PORT} -e DB_DATABASE=${DB_DATABASE} -e DB_USERNAME=${DB_USERNAME} -e DB_PASSWORD=${DB_PASSWORD}
     - docker exec -it api php artisan migrate
     - docker exec -it api php artisan db:seed
 script:
