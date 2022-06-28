@@ -59,7 +59,7 @@ class ShipmentControllerTest extends TestCase
         $response = json_decode($this->response->getContent(), true);
 
         $this->assertResponseOk();
-        $this->assertSame(2, $response['total']);
+        $this->assertSame(1, $response['total']);
         $this->assertSame(66839, $response['data'][0]['stops']['0']['postcode']);
     }
 }
