@@ -22,7 +22,7 @@ class Stop extends Model
      */
     protected $hidden = [
         'shipment_id',
-//        'order_position',
+        'order_position',
         'updated_at',
         'created_at',
     ];
