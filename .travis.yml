@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+    - docker
+
+before_install:
+    - sudo curl -L https://github.com/docker/compose/releases/download/2.6.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose
+    - docker-compose --version
+
+before_script:
+    - cd src
+    - docker-compose up -d
+    - docker exec -it api php artisan migrate
+    - docker exec -it api php artisan db:seed
+script:
+    - docker exec -it api vendor/bin/phpunit
+    - docker exec -it api vendor/bin/php-cs-fixer fix .
+

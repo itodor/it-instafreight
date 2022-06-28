@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shipment;
-use \Illuminate\Http\JsonResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ShipmentController extends Controller
@@ -19,7 +19,6 @@ class ShipmentController extends Controller
             ->with('company')
             ->with('carrier')
             ->with('stops')
-            ->orderBy('stops.order_position', 'ASC')
             ->select('shipments.*');
 
         if ($req->has('company')) {
@@ -46,6 +45,6 @@ class ShipmentController extends Controller
             }
         }
 
-        return response()->json($query->groupBy('shipments.id', 'stops.order_position')->paginate(20)->withQueryString());
+        return response()->json($query->groupBy('shipments.id')->paginate(20)->withQueryString());
     }
 }

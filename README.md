@@ -19,7 +19,7 @@ Copy Laravel's `.env` file that was provided to you into `src` folder.
 Position yourself into `src` directory and build containers/boot up your environment with:
 
 * `cd src`
-* `docker-compose up`
+* `docker-compose up -d`
 
 For the first time set-up you have to run migrations and seed files by executing following commands (DB seed might take 1-2 min):
 * `docker exec -it api php artisan migrate`
@@ -29,12 +29,6 @@ To test that everything is working properly you should be able to go to: `localh
 
 ## Regular workflow:
 For starting up your environment use:
-* `docker-compose up`
-
-Or if you want to rebuild images you can use `--build` flag:
-* `docker-compose up --build`
-
-You can also use `-d` flag to run it as daemon and omit all the logs:
 * `docker-compose up -d`
 
 Tearing down the environment:

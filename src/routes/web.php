@@ -20,5 +20,5 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('shipments',  ['uses' => 'ShipmentController@index']);
+    $router->get('shipments', ['uses' => 'ShipmentController@index']);
 });
