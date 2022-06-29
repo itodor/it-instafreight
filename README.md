@@ -10,7 +10,7 @@ Implement REST API with shipments endpoint that can be filtered by companies, ca
 
 ### Dependencies
 
-* Docker
+* Docker 20+
 * Docker Compose
 
 ### Installing
@@ -32,6 +32,12 @@ For starting up your environment use:
 
 Tearing down the environment:
 * `docker-compose down`
+
+## Check it out in production:
+[/api/shipments](https://ivan-todorovic.com/api/shipments)
+
+## Test the API:
+Go to [swagger editor](https://editor.swagger.io) and paste the src/swagger.json to the editor.
 
 ## Stack information:
 * `NGINX 1.22.0`
