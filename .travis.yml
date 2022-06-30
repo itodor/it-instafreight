@@ -1,25 +1,14 @@
-sudo: required
-
 services:
     - docker
-
 
 jobs:
     include:
         - stage: test
-        before_script:
-            - echo "all is well in before_script"
-#            - cd src
-#            - echo -e "APP_NAME=${APP_NAME}\nAPP_ENV=${APP_ENV}\nAPP_KEY=${APP_KEY}\nAPP_URL=${APP_URL}\nAPP_TIMEZONE=${APP_TIMEZONE}\nLOG_CHANNEL=${LOG_CHANNEL}\nDB_CONNECTION=${DB_CONNECTION}\nDB_HOST=${DB_HOST}\nDB_PORT=${DB_PORT}\nDB_DATABASE=${DB_DATABASE}\nDB_USERNAME=${DB_USERNAME}\nDB_PASSWORD=${DB_PASSWORD}\nCACHE_DRIVER=${CACHE_DRIVER}\nQUEUE_CONNECTION=${QUEUE_CONNECTION}\n" > .env
-#            - docker-compose up -d
-#            - docker exec -it api php artisan migrate --seed
-        script:
-            - echo "all is well in script"
-#            - docker exec -it api vendor/bin/phpunit
-#            - docker exec -it api vendor/bin/php-cs-fixer fix .
-        stage: deploy
-        if: branch=master
-        - script:
-            - echo "you merged into master, here i go deploying..."
-
-
+          before_script:
+              - echo "hi from before_script"
+          script:
+              - echo "hi from script itself"
+        - stage: deploy
+          if: branch=master
+          script:
+              - echo "hi from deploy script!"
