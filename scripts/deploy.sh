@@ -2,12 +2,8 @@
 
 set -xe
 
-if [ $TRAVIS_BRANCH == 'master' ] ; then
-#  eval "$(ssh-agent -s)"
-#  ssh-add ~/.ssh/id_rsa
-#
-#  rsync -a --exclude={'/node_modules','/src','/public'} client/ travis@<droplet ipaddress>:/home/<sudo user>/demo/client
-  echo "Deploying starts"
-else
-  echo "Not deploying, since the branch isn't master."
-fi
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+rsync -a --exclude={'/vendor'} ./ travis@68.183.65.79:~/projects/it-instafreight/src
+echo "Deploying starts"
