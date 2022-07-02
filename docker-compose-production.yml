@@ -1,0 +1,52 @@
+networks:
+    instafreight:
+
+volumes:
+    db-data:
+        driver: local
+
+services:
+    nginx:
+        image: nginx:stable-alpine
+        container_name: nginx
+        restart: always
+        ports:
+            - "443:443"
+            - "80:80"
+        volumes:
+            - ./src:/var/www/html
+            - ./.docker/nginx/production.conf:/etc/nginx/conf.d/default.conf
+            - ./.docker/nginx/ivan.todorovic.key:/ssl/ivan.todorovic.key
+            - ./.docker/nginx/ngingx_bundle_1a7fc165be35.crt:/ssl/ngingx_bundle_1a7fc165be35.crt
+        depends_on:
+            - api
+            - postgres
+        networks:
+            - instafreight
+    api:
+        image: itodor/api
+        container_name: api
+        restart: always
+        volumes:
+            - /var/www/html/vendor
+            - ./src:/var/www/html
+        ports:
+            - "9000:9000"
+        networks:
+            - instafreight
+
+    postgres:
+        image: postgres:14.4-alpine
+        container_name: postgres
+        restart: always
+        tty: true
+        ports:
+            - "5432:5432"
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
+        networks:
+            - instafreight
