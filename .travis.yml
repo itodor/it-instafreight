@@ -8,8 +8,9 @@ before_script:
 - docker-compose up -d
 - docker exec -it api php artisan migrate --seed
 before_install:
+- cd ..
 - openssl aes-256-cbc -K $encrypted_0ddd2445e49f_key -iv $encrypted_0ddd2445e49f_iv
-  -in ../travis_rsa.enc -out travis_rsa -d
+  -in travis_rsa.enc -out travis_rsa -d
 - chmod 600 travis_rsa
 - mv travis_rsa ~/.ssh/id_rsa
 script:
