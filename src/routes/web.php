@@ -16,7 +16,7 @@
 use App\Models\Carrier;
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return 'ivan';
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
