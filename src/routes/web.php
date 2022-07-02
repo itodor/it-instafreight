@@ -16,7 +16,7 @@
 use App\Models\Carrier;
 
 $router->get('/', function () use ($router) {
-    return 'ivan';
+    return 'Auto deployment test';
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
