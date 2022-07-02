@@ -5,6 +5,10 @@ set -xe
 pwd
 ls
 
+if [ -z "$(ssh-keygen -F $IP)" ]; then
+  ssh-keyscan -H $IP >> ~/.ssh/known_hosts
+fi
+
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 
