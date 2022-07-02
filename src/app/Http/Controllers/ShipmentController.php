@@ -40,7 +40,9 @@ class ShipmentController extends Controller
 
             if (isset($location['postcode'])) {
                 $query->where('stops.postcode', '=', $location['postcode']);
-            } elseif (isset($location['city'])) {
+            }
+
+            if (isset($location['city'])) {
                 $query->where('stops.city', 'ilike', $location['city']);
             }
         }
