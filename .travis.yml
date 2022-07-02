@@ -7,9 +7,9 @@ before_install:
   -in travis_rsa.enc -out travis_rsa -d
 - chmod 600 travis_rsa
 - mv travis_rsa ~/.ssh/id_rsa
-- cd ~/projects/it-instafreight
 script:
 - echo 'hi from script'
+- ls
 after_success:
 - echo 'building images'
 deploy:
