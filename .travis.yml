@@ -1,5 +1,7 @@
 services:
 - docker
+addons:
+  ssh_known_hosts: 68.183.65.79
 before_script:
 - echo 'hi from before_script'
 before_install:
